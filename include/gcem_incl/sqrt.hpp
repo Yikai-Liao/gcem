@@ -64,19 +64,29 @@ noexcept
                 m_val * sqrt_recur(x, x / T(2), 0) );
 }
 
+// template<typename T>
+// T
+// sqrt_babylonian(const T x)
+// noexcept
+// {
+//     // see here for more details: https://blogs.sas.com/content/iml/2016/05/16/babylonian-square-roots.html
+//     T xn = x;
+//     T xn1 = (xn + x/xn) / T(2);
+//     while(abs(xn1 - xn) > GCLIM<T>::epsilon()) {
+//         xn = xn1;
+//         xn1 = (xn + x/xn) / T(2);
+//     }
+//     return xn1;
+// }
+
 template<typename T>
 T
-sqrt_babylonian(const T x)
+sqrt_babylonian(const T x, const T xn, const T xn1)
 noexcept
 {
-    // see here for more details: https://blogs.sas.com/content/iml/2016/05/16/babylonian-square-roots.html
-    T xn = x;
-    T xn1 = (xn + x/xn) / T(2);
-    while(abs(xn1 - xn) > GCLIM<T>::epsilon()) {
-        xn = xn1;
-        xn1 = (xn + x/xn) / T(2);
-    }
-    return xn1;
+    return ( abs(xn1 - xn) < GCLIM<T>::epsilon() ? \
+                xn1 :
+                sqrt_babylonian(x, xn1, (xn1 + x/xn1) / T(2)));
 }
 
 template<typename T>
@@ -100,7 +110,7 @@ noexcept
                 x :
             // else
             // sqrt_simplify(x, T(1)) );
-            sqrt_babylonian(x) );
+            sqrt_babylonian(x, x, (x + T(1)) / T(2)) );
 }
 
 }

@@ -100,18 +100,27 @@ noexcept
 template<typename T>
 constexpr
 T
-tan_from_sin_cos(const T x)
+tan_from_sin_cos_inner(const T x1)
 noexcept
 {
     // There should be faster ways to calculate tan(x) directly
     // At least as fast as calculating sin(x) and cos(x) using Chebyshev polynomials
+    return (
+        x1 < T(GCEM_HALF_PI) ? sin(x1) / cos(x1) :
+        x1 > T(GCEM_HALF_PI) ? - sin(T(GCEM_PI) - x1) / cos(T(GCEM_PI) - x1) :
+        GCLIM<T>::quiet_NaN()   // x1 == 1/2 pi
+    );
+}
+
+
+template<typename T>
+constexpr
+T
+tan_from_sin_cos(const T x)
+noexcept
+{
     // limit x to range(0, pi)
-    T x1 = x - T(GCEM_PI) * floor(x / T(GCEM_PI));
-    // calculate
-    if(x1 < T(GCEM_HALF_PI))    return sin(x1) / cos(x1);
-    if(x1 == T(GCEM_HALF_PI))   return GCLIM<T>::quiet_NaN();
-    x1 = T(GCEM_PI) - x1;
-    return - sin(x1) / cos(x1);
+    return tan_from_sin_cos_inner(x - T(GCEM_PI) * floor(x / T(GCEM_PI)));
 }
 
 template<typename T>
