@@ -19,7 +19,7 @@
   ################################################################################*/
 
 /*
- * compile-time cosine function using tan(x/2)
+ * compile-time cosine function using 30th degree Chebyshev approximation
  */
 
 #ifndef _gcem_cos_HPP

@@ -100,6 +100,19 @@ noexcept
 template<typename T>
 constexpr
 T
+tan_from_sin_cos(const T x)
+noexcept
+{
+    // There should be faster ways to calculate tan(x) directly
+    // At least as fast as calculating sin(x) and cos(x) using Chebyshev polynomials
+    const T sin_x = sin(x);
+    const T cos_x = cos(x);
+    return( sin_x/cos_x );
+}
+
+template<typename T>
+constexpr
+T
 tan_check(const T x)
 noexcept
 {
@@ -110,9 +123,10 @@ noexcept
             GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
-                x < T(0) ? \
-                    - tan_begin(-x) : 
-                      tan_begin( x) );
+                tan_from_sin_cos(x));
+                // x < T(0) ? \
+                //     - tan_begin(-x) :
+                //       tan_begin( x) );
 }
 
 }

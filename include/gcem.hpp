@@ -70,9 +70,10 @@ namespace gcem
     #include "gcem_incl/gcd.hpp"
     #include "gcem_incl/lcm.hpp"
 
-    #include "gcem_incl/tan.hpp"
     #include "gcem_incl/cos.hpp"
     #include "gcem_incl/sin.hpp"
+    #include "gcem_incl/tan.hpp"
+
 
     #include "gcem_incl/atan.hpp"
     #include "gcem_incl/atan2.hpp"

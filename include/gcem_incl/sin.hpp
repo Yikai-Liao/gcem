@@ -19,9 +19,7 @@
   ################################################################################*/
 
 /*
- * compile-time sine function using tan(x/2)
- * 
- * see eq. 5.4.8 in Numerical Recipes
+ * compile-time sine function using 29th degree Chebyshev polynomial approximation
  */
 
 #ifndef _gcem_sin_HPP
