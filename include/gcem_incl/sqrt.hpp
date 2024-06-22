@@ -65,6 +65,21 @@ noexcept
 }
 
 template<typename T>
+T
+sqrt_babylonian(const T x)
+noexcept
+{
+    // see here for more details: https://blogs.sas.com/content/iml/2016/05/16/babylonian-square-roots.html
+    T xn = x;
+    T xn1 = (xn + x/xn) / T(2);
+    while(abs(xn1 - xn) > GCLIM<T>::epsilon()) {
+        xn = xn1;
+        xn1 = (xn + x/xn) / T(2);
+    }
+    return xn1;
+}
+
+template<typename T>
 constexpr
 T
 sqrt_check(const T x)
@@ -84,7 +99,8 @@ noexcept
             GCLIM<T>::min() > abs(T(1) - x) ? \
                 x :
             // else
-            sqrt_simplify(x, T(1)) );
+            // sqrt_simplify(x, T(1)) );
+            sqrt_babylonian(x) );
 }
 
 }
