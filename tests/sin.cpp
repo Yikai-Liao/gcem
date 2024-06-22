@@ -37,7 +37,10 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,11.1L);
     GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,50.0L);
     GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,150.0L);
-
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,GCEM_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,GCEM_HALF_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,-GCEM_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,-GCEM_HALF_PI);
     GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,TEST_NAN);
 
     //
