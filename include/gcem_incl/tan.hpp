@@ -105,9 +105,13 @@ noexcept
 {
     // There should be faster ways to calculate tan(x) directly
     // At least as fast as calculating sin(x) and cos(x) using Chebyshev polynomials
-    const T sin_x = sin(x);
-    const T cos_x = cos(x);
-    return( sin_x/cos_x );
+    // limit x to range(0, pi)
+    T x1 = x - T(GCEM_PI) * floor(x / T(GCEM_PI));
+    // calculate
+    if(x1 < T(GCEM_HALF_PI))    return sin(x1) / cos(x1);
+    if(x1 == T(GCEM_HALF_PI))   return GCLIM<T>::quiet_NaN();
+    x1 = T(GCEM_PI) - x1;
+    return - sin(x1) / cos(x1);
 }
 
 template<typename T>
