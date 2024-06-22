@@ -37,7 +37,10 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,11.1L);
     GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,50.0L);
     GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,150.0L);
-
+    GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,GCEM_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,GCEM_HALF_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,-GCEM_PI);
+    GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,-GCEM_HALF_PI);
     GCEM_TEST_COMPARE_VALS(gcem::cos,std::cos,TEST_NAN);
 
     //
