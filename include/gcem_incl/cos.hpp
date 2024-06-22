@@ -42,9 +42,8 @@ constexpr
 T
 cos_compute_chebyshev(const T x)
 noexcept {
-    constexpr T two_pie = 2 * T(GCEM_PI);
     // limit x to range(0, 2*pi)
-    const T x1 = x - two_pie * floor(x / two_pie);
+    const T x1 = x - T(GCEM_2PI) * floor(x / T(GCEM_2PI));
     const T x2 = x1 * x1;
     // Chebyshev approximation of sin(x) with degree 30
     // weights are from: https://publik-void.github.io/sin-cos-approximations/#_cos_rel_error_minimized_degree_30
